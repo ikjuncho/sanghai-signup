@@ -526,7 +526,7 @@ async function saveEdit() {
   try {
     const res = await api({ action: 'edit', id: currentId, n, p });  // ← editId → currentId    if (res.error) throw new Error(res.error);
   } catch(err) {
-    parts[editId] = prev; draw();
+    parts[currentID] = prev; draw();
     toast('❌ 수정 실패');
   } finally {
     busy = false;
