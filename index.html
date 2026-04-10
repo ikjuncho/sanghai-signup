@@ -512,19 +512,19 @@ async function saveEdit() {
   if (!editId || !parts[editId] || busy) return;
   const n = document.getElementById('editName').value.trim();
   const p = document.getElementById('editPhone').value.trim();
-  if (!n)                              { toast('⚠️ 이름을 입력해 주세요'); return; }
+  if (!n) { toast('⚠️ 이름을 입력해 주세요'); return; }
   if (!p || p.replace(/\D/g,'').length < 10) { toast('⚠️ 연락처를 정확히 입력해 주세요'); return; }
 
-  const prev = { ...parts[editId] };
-  parts[editId].n = n;
-  parts[editId].p = p;
+  const currentId = editId;  // ← 이 줄 추가!
+  const prev = { ...parts[currentId] };
+  parts[currentId].n = n;
+  parts[currentId].p = p;
   draw(); closeEdit();
   toast('✅ ' + n + '님 정보가 수정되었습니다');
 
   busy = true;
   try {
-    const res = await api({ action: 'edit', id: editId, n, p });
-    if (res.error) throw new Error(res.error);
+    const res = await api({ action: 'edit', id: currentId, n, p });  // ← editId → currentId    if (res.error) throw new Error(res.error);
   } catch(err) {
     parts[editId] = prev; draw();
     toast('❌ 수정 실패');
