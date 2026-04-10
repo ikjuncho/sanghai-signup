@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+<title>서부초등 50회 2026년 칠순 해외여행 예약 신청</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --kakao:#FEE500; --kakao-dk:#3C1E1E;
+  --cream:#FFFDF5; --border:#E5DDD0;
+  --red:#D94040; --green:#1E9E6B; --blue:#2B63CC;
+  --shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:15px;font-weight:700;
+  background:#C8C4BD;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  padding:20px 0 70px;
+}
+.chat-wrap{width:100%;max-width:440px;padding:0 10px;}
+.chat-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:0 4px;}
+.chat-avatar{width:46px;height:46px;border-radius:30%;background:var(--kakao);display:flex;align-items:center;justify-content:center;font-size:23px;box-shadow:0 2px 10px rgba(0,0,0,0.18);}
+.chat-name{font-size:14px;font-weight:900;color:#222;}
+.chat-sub{font-size:12px;color:#888;font-weight:500;margin-top:2px;}
+.bubble{background:#fff;border-radius:0 18px 18px 18px;box-shadow:var(--shadow);overflow:hidden;}
+.hero{background:linear-gradient(150deg,#160800 0%,#3a1600 35%,#7a3200 68%,#BF7215 100%);padding:28px 22px 22px;position:relative;overflow:hidden;}
+.hero::after{content:'✈';position:absolute;bottom:10px;right:20px;font-size:64px;opacity:0.10;transform:rotate(-20deg);}
+.hero-badge{display:inline-block;background:var(--kakao);color:var(--kakao-dk);font-size:12px;font-weight:900;padding:3px 12px;border-radius:20px;margin-bottom:10px;}
+.hero-title{font-size:21px;font-weight:900;color:#fff;line-height:1.4;letter-spacing:-0.5px;}
+.hero-meta{margin-top:7px;font-size:13px;color:rgba(255,255,255,0.65);font-weight:500;}
+.dl-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.13);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:9px;}
+.dl-pill.expired{background:rgba(220,60,60,0.5);border-color:rgba(220,60,60,0.7);}
+.info-sec{padding:16px 16px 4px;background:var(--cream);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.icard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:11px 13px;}
+.icard.full{grid-column:1/-1;}
+.ilabel{font-size:13px;font-weight:700;color:#111;letter-spacing:0px;margin-bottom:4px;}
+.ival{font-size:15px;font-weight:700;color:#1a1a1a;line-height:1.45;}
+.ival .r{color:var(--red);}
+.ival .g{color:var(--green);}
+.ival .sm{font-size:12px;color:#555;font-weight:700;}
+.acct-card{margin:0 16px 10px;background:#EBF2FF;border:1.5px solid #93BAF5;border-radius:12px;padding:13px 15px;}
+.acct-top{font-size:12px;font-weight:900;color:var(--blue);margin-bottom:9px;}
+.acct-row{display:flex;align-items:center;gap:10px;}
+.acct-info{flex:1;}
+.acct-bank{font-size:12px;color:#666;font-weight:500;}
+.acct-num{font-size:18px;font-weight:900;color:#111;letter-spacing:1px;}
+.acct-name{font-size:12px;color:#555;font-weight:500;margin-top:2px;}
+.btn-copy{background:var(--blue);color:#fff;border:none;border-radius:9px;padding:9px 15px;font-size:14px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;}
+.btn-copy:hover{background:#1e52b8;}
+.btn-copy.done{background:var(--green);}
+.warn-box{margin:0 16px 10px;background:#FFF4CC;border:1.5px solid #F5C200;border-radius:12px;padding:13px 15px;font-size:14px;color:#5C3D00;font-weight:700;line-height:1.85;}
+.warn-box .wt{font-size:16px;font-weight:900;color:#C45000;margin-bottom:3px;}
+.warn-box a{color:var(--blue);text-decoration:none;font-weight:900;}
+.notice-box{margin:0 16px 14px;background:#FFFBE8;border-left:4px solid var(--kakao);border-radius:0 9px 9px 0;padding:11px 13px;font-size:14px;color:#4A3300;font-weight:700;line-height:1.9;}
+.notice-box strong{font-weight:900;}
+.counter-wrap{margin:0 16px 12px;background:linear-gradient(135deg,#1a1a1a,#2e2e2e);border-radius:14px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;}
+.c-left{color:#fff;}
+.c-lbl{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:3px;font-weight:500;}
+.c-num{font-size:42px;font-weight:900;color:var(--kakao);line-height:1;}
+.c-num span{font-size:17px;color:rgba(255,255,255,0.45);font-weight:500;}
+.s-pill{display:inline-block;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-top:5px;}
+.s-ok{background:rgba(30,158,107,0.25);color:#1E9E6B;}
+.s-warn{background:rgba(217,64,64,0.25);color:var(--red);}
+.ring-bg{fill:none;stroke:rgba(255,255,255,0.10);stroke-width:5;}
+.ring-fill{fill:none;stroke:var(--kakao);stroke-width:5;stroke-linecap:round;transform:rotate(-90deg);transform-origin:32px 32px;transition:stroke-dashoffset 0.5s ease;}
+.stats-bar{margin:0 16px 14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.scard{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;}
+.slbl{font-size:13px;color:#111;font-weight:700;margin-bottom:3px;}
+.sval{font-size:15px;font-weight:900;color:#1a1a1a;}
+.sval.g{color:var(--green);}
+.sval.b{color:var(--blue);}
+.sval.r{color:var(--red);}
+.admin-bar{margin:0 16px 10px;background:#111;border-radius:9px;padding:8px 14px;display:none;align-items:center;justify-content:space-between;}
+.admin-bar.on{display:flex;}
+.adm-txt{font-size:12px;color:var(--kakao);font-weight:700;}
+.adm-exit{background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);border-radius:6px;padding:3px 10px;font-size:12px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+.list-sec{padding:0 16px 14px;background:var(--cream);}
+.list-hdr{font-size:16px;font-weight:900;color:#111;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.list-hdr::after{content:'';flex:1;height:2px;background:var(--border);}
+.list-count{font-size:13px;font-weight:700;color:#fff;background:var(--kakao-dk);border-radius:20px;padding:2px 10px;}
+.list-tip{font-size:12px;color:#555;font-weight:700;margin-bottom:10px;text-align:right;}
+.table-wrap{width:100%;overflow:hidden;border-radius:10px;border:1.5px solid var(--border);}
+.p-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;}
+.p-table th{background:#E8E3D8;padding:8px 4px;font-size:12px;font-weight:900;color:#111;border-bottom:2px solid var(--border);text-align:center;word-break:keep-all;}
+.p-table th.left{text-align:left;padding-left:8px;}
+.p-table td{padding:9px 4px;border-bottom:1px solid #EDE8DF;vertical-align:middle;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.p-table td.left{padding-left:8px;}
+.p-table tr:nth-child(even) td{background:#FAFAF5;}
+.p-table tr:last-child td{border-bottom:none;}
+.p-badge{width:22px;height:22px;border-radius:50%;background:var(--kakao);color:var(--kakao-dk);font-size:11px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;}
+.dep-btn{border:none;border-radius:6px;padding:5px 6px;font-size:11px;font-weight:900;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;cursor:pointer;display:inline-block;transition:all 0.15s;}
+.dep-btn:hover{opacity:0.85;}
+.dep-ok{background:#DCFCE7;color:#166534;border:1.5px solid #86EFAC;}
+.dep-no{background:#FEE2E2;color:#991B1B;border:1.5px solid #FCA5A5;}
+.edit-modal-bg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9000;align-items:center;justify-content:center;}
+.edit-modal-bg.on{display:flex;}
+.edit-modal{background:#fff;border-radius:16px;padding:22px 18px;width:88%;max-width:340px;}
+.edit-modal h3{font-size:16px;font-weight:900;color:#111;margin-bottom:14px;}
+.edit-modal input{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:11px 13px;font-size:15px;font-family:'Noto Sans KR',sans-serif;font-weight:500;outline:none;margin-bottom:10px;}
+.edit-modal input:focus{border-color:var(--kakao);}
+.edit-modal-btns{display:flex;gap:8px;margin-top:4px;}
+.btn-save{flex:1;background:var(--kakao);color:var(--kakao-dk);border:none;border-radius:9px;padding:12px;font-size:15px;font-weight:900;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+.btn-cancel{flex:1;background:#F2F0EA;color:#666;border:none;border-radius:9px;padding:12px;font-size:15px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+.edit-btn{background:#EBF2FF;border:1px solid #93BAF5;color:var(--blue);border-radius:6px;padding:5px 8px;font-size:11px;font-weight:900;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;}
+.edit-btn:hover{background:#DBEAFE;}
+.del-btn{background:none;border:none;color:#ccc;font-size:16px;cursor:pointer;padding:2px;line-height:1;}
+.del-btn:hover{color:var(--red);}
+.empty-state{text-align:center;padding:22px 0;color:#bbb;font-size:14px;font-weight:500;}
+.empty-state span{font-size:30px;display:block;margin-bottom:6px;}
+.form-sec{padding:14px 16px 18px;background:#F2F0EA;border-top:1px solid var(--border);}
+.form-ttl{font-size:15px;font-weight:900;color:#1a1a1a;margin-bottom:11px;}
+.form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+.form-row input{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:12px 13px;font-size:15px;font-weight:500;font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color 0.2s;background:#fff;}
+.form-row input:focus{border-color:var(--kakao);}
+.form-row input::placeholder{color:#bbb;font-weight:400;}
+.btn-submit{width:100%;padding:14px;background:var(--kakao);color:var(--kakao-dk);font-family:'Noto Sans KR',sans-serif;font-size:16px;font-weight:900;border:none;border-radius:12px;cursor:pointer;transition:all 0.2s;}
+.btn-submit:hover:not(:disabled){background:#EFD600;transform:translateY(-1px);box-shadow:0 4px 14px rgba(254,229,0,0.4);}
+.btn-submit:disabled{background:#E8E3D8;color:#AAA;cursor:not-allowed;transform:none;}
+.expired-banner{margin:0 16px 14px;background:#FFF0F0;border:2px dashed var(--red);border-radius:12px;padding:16px;text-align:center;color:var(--red);font-size:17px;font-weight:900;}
+.expired-banner .sub{font-size:13px;color:#888;font-weight:500;margin-top:4px;}
+.fuel-notice{margin:0 16px 14px;background:#EBF3FF;border:1.5px solid #7BB3F0;border-left:5px solid #2B63CC;border-radius:0 10px 10px 0;padding:13px 15px;font-size:14px;color:#1a3a6b;font-weight:700;line-height:2.0;letter-spacing:0.1px;}
+.fuel-title{font-size:15px;font-weight:900;color:#1044A8;margin-bottom:6px;}
+.sms-btn{display:inline-block;background:#DDEEFF;color:#B8860B;font-size:15px;font-weight:900;padding:10px 20px;border-radius:10px;text-decoration:none;letter-spacing:0.3px;border:2px solid #7AAAD0;text-align:center;}
+.sms-btn:hover{background:#C8E0F8;}
+
+/* 로딩 오버레이 */
+.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:8000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;}
+.loading-overlay.on{display:flex;}
+.spinner{width:44px;height:44px;border:4px solid rgba(255,255,255,0.3);border-top-color:var(--kakao);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-txt{color:#fff;font-size:14px;font-weight:700;font-family:'Noto Sans KR',sans-serif;}
+
+/* 오프라인 배너 */
+.offline-banner{margin:0 16px 10px;background:#FFF0F0;border:1.5px solid var(--red);border-radius:9px;padding:9px 13px;font-size:13px;font-weight:700;color:var(--red);text-align:center;display:none;}
+.offline-banner.on{display:block;}
+
+/* 새로고침 버튼 */
+.refresh-wrap{margin:0 16px 10px;text-align:right;}
+.btn-refresh{background:#F2F0EA;border:1px solid var(--border);color:#555;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;}
+.btn-refresh:hover{background:#E8E3D8;}
+
+.bubble-footer{padding:14px 16px;background:#FAFAF7;border-top:1px solid var(--border);text-align:center;line-height:1.8;}
+.design-credit{font-size:13pt;font-weight:900;color:#0a2a7a;letter-spacing:0.5px;}
+.admin-hint{cursor:pointer;opacity:0.3;user-select:none;font-size:13px;color:#aaa;}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(60px);background:#1a1a1a;color:#fff;padding:12px 24px;border-radius:30px;font-size:14px;font-weight:700;font-family:'Noto Sans KR',sans-serif;transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);z-index:9999;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- 로딩 오버레이 -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-txt" id="loadingTxt">데이터 불러오는 중...</div>
+</div>
+
+<div class="chat-wrap">
+  <div class="chat-header">
+    <div class="chat-avatar">✈️</div>
+    <div>
+      <div class="chat-name">서부초등 50회 동기회</div>
+      <div class="chat-sub">2026 칠순 해외여행 예약 신청서</div>
+    </div>
+  </div>
+
+  <div class="bubble">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge">📣 2026 칠순 해외여행 예약 신청</div>
+      <div class="hero-title">서부초등 50회<br>2026년 칠순 해외여행 ✈️</div>
+      <div class="hero-meta">🇨🇳 중국 상하이 · 9월 10일 ~ 13일 (3박 4일)</div>
+      <div class="dl-pill" id="dlPill">📅 신청기간: 4월 9일 ~ 4월 30일</div>
+    </div>
+
+    <!-- Info -->
+    <div class="info-sec">
+      <div class="info-grid">
+        <div class="icard">
+          <div class="ilabel">📅 여행 날짜</div>
+          <div class="ival">9월 10일 ~ 13일<br><span class="sm">3박 4일</span></div>
+        </div>
+        <div class="icard">
+          <div class="ilabel">📍 여행 장소</div>
+          <div class="ival">🇨🇳 중국<br>상하이(上海)</div>
+        </div>
+        <div class="icard">
+          <div class="ilabel">💰 1인 여행 경비</div>
+          <div class="ival"><span class="r">950,000원</span><br><span class="sm">총 여행경비</span></div>
+        </div>
+        <div class="icard">
+          <div class="ilabel">💳 개인 경비 부담금</div>
+          <div class="ival"><span class="g">650,000원</span><br><span class="sm">신청 시 예약금 300,000원</span></div>
+        </div>
+        <div class="icard full" style="background:#FFF9E6;border-color:#F5C200;">
+          <div class="ilabel">🎁 50회 동기회 지원</div>
+          <div class="ival">
+            여행경비 950,000원 중 동기회에서 <span class="g">1인 300,000원 지원</span><br>
+            <span class="sm">→ 실제 개인 부담금: </span><span class="r" style="font-size:17px;">650,000원</span>
+          </div>
+        </div>
+        <div class="icard full">
+          <div class="ilabel">🛏 숙박 안내</div>
+          <div class="ival">2인 1실 기본 · 홀수(1인) 단독 숙박 시 <span class="r">$70 추가</span></div>
+        </div>
+        <div class="icard full">
+          <div class="ilabel">👥 참가 인원 조건</div>
+          <div class="ival">최소 <span class="g">25명 ~ 30명</span> · <span class="r">25명 이하 시 취소</span></div>
+        </div>
+        <div class="icard full">
+          <div class="ilabel">🚌 날짜 / 집합장소 / 시간</div>
+          <div class="ival">9월 10일 / 대구공항 / 10시</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account -->
+    <div class="acct-card">
+      <div class="acct-top">💳 여행경비 및 예약금 입금 계좌</div>
+      <div class="acct-row">
+        <div class="acct-info">
+          <div class="acct-bank">대구은행</div>
+          <div class="acct-num">504-10-493040-3</div>
+          <div class="acct-name">예금주: 서부초등50회 동기회</div>
+        </div>
+        <button class="btn-copy" id="copyBtn" onclick="copyAccount()">📋 복사</button>
+      </div>
+    </div>
+
+    <!-- Warning -->
+    <div class="warn-box">
+      <div class="wt">⚠️ 입금 후 반드시 연락하세요!</div>
+      여행경비(650,000원) 중 <strong>예약금 300,000원 입금 후</strong> 총무에게 필히 문자로 연락 주시고,<br>
+      입금 후 아래 <strong>참가 신청자 명단</strong>에서 <strong>미입금 체크</strong> 하시면 됩니다.<br>
+      여권은 사진 찍어 아래 <strong>문자 보내기</strong>에서 여권 사진 선택 후 보내 주시면 감사합니다.
+      <div style="margin-top:10px;">
+        <a href="sms:01035070142" class="sms-btn">📱 문자 보내기 : 010-3507-0142</a>
+      </div>
+    </div>
+
+    <!-- Notice -->
+    <div class="notice-box">
+      <strong>📌 꼭 확인하세요!</strong><br>
+      · 신청 기간: <strong>2026년 4월 9일 ~ 4월 30일</strong><br>
+      · 여권 유효기간 <strong>6개월 이상</strong> 남아있어야 합니다<br>
+      · 개인 준비물 별도 지참<br>
+      · 문의: <strong>50회 총무</strong><br>
+      &nbsp;&nbsp;남 : <a href="tel:01035070142" style="color:var(--blue);font-weight:900;">010-3507-0142</a>&nbsp;
+      여 : <a href="tel:01042919000" style="color:var(--blue);font-weight:900;">010-4291-9000</a>
+    </div>
+
+    <!-- Fuel surcharge -->
+    <div class="fuel-notice">
+      <div class="fuel-title">✈️ 여행 경비 변동 안내</div>
+      현재 4월 유류 할증료 적용 중 금액이며, 국제 원유 가격 상승 및 원/달러 환율 상승(원화 가치 하락)으로 <strong>계약 시점에 따라 여행 경비가 변경될 수 있습니다.</strong>
+    </div>
+
+    <!-- Offline banner -->
+    <div class="offline-banner" id="offlineBanner">⚠️ 서버 연결 실패 — 데이터를 불러오지 못했습니다. 새로고침 해주세요.</div>
+
+    <!-- Refresh -->
+    <div class="refresh-wrap">
+      <button class="btn-refresh" onclick="loadData()">🔄 새로고침</button>
+    </div>
+
+    <!-- Counter -->
+    <div class="counter-wrap">
+      <div class="c-left">
+        <div class="c-lbl">현재 참가 신청 인원</div>
+        <div class="c-num" id="countNum">— <span>명</span></div>
+        <div class="s-pill s-warn" id="sPill">로딩 중</div>
+      </div>
+      <div style="text-align:center;">
+        <svg width="64" height="64" viewBox="0 0 64 64">
+          <circle class="ring-bg" cx="32" cy="32" r="27"/>
+          <circle class="ring-fill" id="ringFill" cx="32" cy="32" r="27"
+            stroke-dasharray="169.6" stroke-dashoffset="169.6"/>
+        </svg>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:3px;">목표 <strong style="color:var(--kakao)">40</strong>명</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="scard"><div class="slbl">총 신청</div><div class="sval b" id="stTotal">—</div></div>
+      <div class="scard"><div class="slbl">입금 완료</div><div class="sval g" id="stConf">—</div></div>
+      <div class="scard"><div class="slbl">납입 합계</div><div class="sval r" id="stAmt">—</div></div>
+    </div>
+
+    <!-- Admin bar -->
+    <div class="admin-bar" id="adminBar">
+      <div class="adm-txt">🔐 총무 관리 모드 활성화</div>
+      <button class="adm-exit" onclick="exitAdmin()">종료</button>
+    </div>
+    <div id="admHelp" style="display:none;margin:0 16px 10px;background:#E8F5E9;border:1.5px solid #81C784;border-radius:9px;padding:9px 13px;font-size:13px;font-weight:700;color:#1B5E20;">
+      💡 입금확인 버튼을 <strong>클릭</strong>하면 ✅ 입금완료로 변경됩니다.<br>
+      🗑 버튼으로 신청자 삭제 가능합니다.
+    </div>
+
+    <!-- Expired -->
+    <div class="expired-banner" id="expBanner" style="display:none;">
+      🚫 신청 접수 완료
+      <div class="sub">신청기간(4월 30일)이 종료되었습니다</div>
+    </div>
+
+    <!-- List -->
+    <div class="list-sec">
+      <div class="list-hdr">📋 참가 신청자 명단 <span class="list-count" id="listCount">0명</span></div>
+      <div class="list-tip" id="listTip"></div>
+      <div id="listWrap">
+        <div class="empty-state"><span>⏳</span>데이터 불러오는 중입니다...</div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="form-sec">
+      <div class="form-ttl" id="formTtl">✏️ 참가 예약 신청</div>
+      <div class="form-row">
+        <input type="text" id="iName"  placeholder="이름" maxlength="10">
+        <input type="tel"  id="iPhone" placeholder="010-0000-0000" maxlength="15">
+      </div>
+      <button class="btn-submit" id="subBtn" onclick="addP()">참가 예약 신청 완료 ✓</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="bubble-footer">
+      <span class="design-credit">design by 조기상</span><br>
+      <span class="admin-hint" id="aHint" onclick="aTap()">⚙</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- 수정 모달 -->
+<div class="edit-modal-bg" id="editModalBg">
+  <div class="edit-modal">
+    <h3>✏️ 신청 정보 수정</h3>
+    <input type="text" id="editName"  placeholder="이름" maxlength="10">
+    <input type="tel"  id="editPhone" placeholder="010-0000-0000" maxlength="15">
+    <div class="edit-modal-btns">
+      <button class="btn-save"   onclick="saveEdit()">저장</button>
+      <button class="btn-cancel" onclick="closeEdit()">취소</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  ✅ 여기에 배포된 Apps Script 웹앱 URL을 붙여넣으세요!
+// ══════════════════════════════════════════════════════
+const API_URL = 'https://script.google.com/macros/s/AKfycbxwcRtTvR74M6XJNAAPcC1hZ6fZPfzUdWyVjadPSqx3T9-BiU51gLJUd6pEjIlLV_9u/exec';
+
+const GOAL    = 40;
+const WARN    = 25;
+const DEP_AMT = 300000;
+const PIN     = '5050';
+const T_START = new Date('2026-04-09T00:00:00');
+const T_END   = new Date('2026-04-30T23:59:59');
+
+let parts = {};
+let isAdm = false;
+let busy  = false;   // 요청 중 중복 방지
+
+// ── 시작 ──
+loadData();
+
+// ── API 호출 ──
+async function api(params) {
+  const url = API_URL + '?' + new URLSearchParams(params).toString();
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
+}
+
+// ── 데이터 로드 ──
+async function loadData() {
+  showLoading('데이터 불러오는 중...');
+  document.getElementById('offlineBanner').classList.remove('on');
+  try {
+    const data = await api({ action: 'getAll' });
+    if (data.error) throw new Error(data.error);
+    parts = data;
+    draw();
+  } catch(err) {
+    document.getElementById('offlineBanner').classList.add('on');
+    draw();   // 빈 상태라도 그리기
+    console.error('loadData error:', err);
+  } finally {
+    hideLoading();
+  }
+}
+
+// ── 기간 체크 ──
+function chkDL() {
+  const now = new Date();
+  const pill = document.getElementById('dlPill');
+  const btn  = document.getElementById('subBtn');
+  const ttl  = document.getElementById('formTtl');
+  const ban  = document.getElementById('expBanner');
+  if (now > T_END) {
+    pill.textContent = '🚫 신청 접수 완료 (마감)';
+    pill.className   = 'dl-pill expired';
+    btn.disabled     = true;
+    btn.textContent  = '🚫 신청기간 종료 — 접수 완료';
+    ttl.textContent  = '⛔ 신청기간이 종료되었습니다 (4월 30일 마감)';
+    ban.style.display = 'block';
+    return true;
+  }
+  if (now < T_START) {
+    btn.disabled    = true;
+    btn.textContent = '📅 신청기간 시작 전 (4월 9일~)';
+    return false;
+  }
+  const rem = Math.ceil((T_END - now) / (1000 * 60 * 60 * 24));
+  pill.textContent = '📅 신청 중 · ' + rem + '일 남음';
+  btn.disabled    = false;
+  btn.textContent = '참가 예약 신청 완료 ✓';
+  return false;
+}
+
+// ── 전화번호 포맷 ──
+function fmtPhone(v) {
+  v = v.replace(/\D/g, '');
+  if (v.length <= 3) return v;
+  if (v.length <= 7) return v.slice(0,3) + '-' + v.slice(3);
+  return v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+}
+document.getElementById('iPhone').addEventListener('input', function() {
+  this.value = fmtPhone(this.value);
+});
+document.getElementById('editPhone').addEventListener('input', function() {
+  this.value = fmtPhone(this.value);
+});
+
+// ── 신청 추가 ──
+async function addP() {
+  if (chkDL())  { toast('⛔ 신청기간이 종료되었습니다'); return; }
+  if (busy)     { toast('⏳ 처리 중입니다...'); return; }
+
+  const n = document.getElementById('iName').value.trim();
+  const p = document.getElementById('iPhone').value.trim();
+  if (!n)                              { toast('⚠️ 이름을 입력해 주세요'); return; }
+  if (!p || p.replace(/\D/g,'').length < 10) { toast('⚠️ 연락처를 정확히 입력해 주세요'); return; }
+  if (Object.values(parts).some(x => x.n === n)) { toast('⚠️ 이미 신청된 이름입니다'); return; }
+
+  const id = 'l' + Date.now();
+  const ts = Date.now();
+
+  // 낙관적 업데이트 (즉각 화면 반영)
+  parts[id] = { n, p, ts, ok: false };
+  draw();
+  document.getElementById('iName').value  = '';
+  document.getElementById('iPhone').value = '';
+  toast('✅ ' + n + '님 예약 신청 완료!');
+
+  busy = true;
+  try {
+    const res = await api({ action: 'add', id, n, p, ts });
+    if (res.error === 'duplicate_name') {
+      toast('⚠️ 이미 신청된 이름입니다 (서버 확인)');
+      delete parts[id]; draw();
+    } else if (res.error) {
+      throw new Error(res.error);
+    }
+  } catch(err) {
+    toast('❌ 저장 실패 — 다시 시도해 주세요');
+    delete parts[id]; draw();
+  } finally {
+    busy = false;
+  }
+}
+
+// ── 입금 토글 ──
+async function togDep(id) {
+  if (!parts[id] || busy) return;
+  const prev = parts[id].ok;
+  parts[id].ok = !prev;
+  draw();
+  toast(parts[id].ok ? '✅ ' + parts[id].n + '님 예약금 입금 확인!' : '↩️ ' + parts[id].n + '님 입금 취소');
+
+  busy = true;
+  try {
+    const res = await api({ action: 'toggle', id });
+    if (res.error) throw new Error(res.error);
+  } catch(err) {
+    parts[id].ok = prev; draw();
+    toast('❌ 저장 실패');
+  } finally {
+    busy = false;
+  }
+}
+
+// ── 수정 모달 ──
+let editId = null;
+function editP(id) {
+  if (!parts[id]) return;
+  editId = id;
+  document.getElementById('editName').value  = parts[id].n;
+  document.getElementById('editPhone').value = parts[id].p;
+  document.getElementById('editModalBg').classList.add('on');
+}
+function closeEdit() {
+  editId = null;
+  document.getElementById('editModalBg').classList.remove('on');
+}
+async function saveEdit() {
+  if (!editId || !parts[editId] || busy) return;
+  const n = document.getElementById('editName').value.trim();
+  const p = document.getElementById('editPhone').value.trim();
+  if (!n)                              { toast('⚠️ 이름을 입력해 주세요'); return; }
+  if (!p || p.replace(/\D/g,'').length < 10) { toast('⚠️ 연락처를 정확히 입력해 주세요'); return; }
+
+  const prev = { ...parts[editId] };
+  parts[editId].n = n;
+  parts[editId].p = p;
+  draw(); closeEdit();
+  toast('✅ ' + n + '님 정보가 수정되었습니다');
+
+  busy = true;
+  try {
+    const res = await api({ action: 'edit', id: editId, n, p });
+    if (res.error) throw new Error(res.error);
+  } catch(err) {
+    parts[editId] = prev; draw();
+    toast('❌ 수정 실패');
+  } finally {
+    busy = false;
+  }
+}
+
+// ── 삭제 ──
+async function delP(id) {
+  if (!isAdm || busy) return;
+  const nm = parts[id]?.n || '(알수없음)';
+  if (!confirm(nm + '님 신청을 취소하시겠습니까?')) return;
+
+  const prev = { ...parts[id] };
+  delete parts[id]; draw();
+  toast('🗑 ' + nm + '님 취소됨');
+
+  busy = true;
+  try {
+    const res = await api({ action: 'del', id });
+    if (res.error) throw new Error(res.error);
+  } catch(err) {
+    parts[id] = prev; draw();
+    toast('❌ 삭제 실패');
+  } finally {
+    busy = false;
+  }
+}
+
+// ── 전체 렌더 ──
+function draw() {
+  chkDL();
+  const list = Object.entries(parts).sort((a, b) => a[1].ts - b[1].ts);
+  const tot  = list.length;
+  const conf = list.filter(([, x]) => x.ok).length;
+  const amt  = conf * DEP_AMT;
+
+  document.getElementById('countNum').innerHTML = tot + ' <span>명</span>';
+  document.getElementById('stTotal').textContent = tot + '명';
+  document.getElementById('stConf').textContent  = conf + '명';
+  document.getElementById('stAmt').textContent   = amt.toLocaleString() + '원';
+
+  const pct = Math.min(tot / GOAL, 1);
+  document.getElementById('ringFill').style.strokeDashoffset = (169.6 * (1 - pct)).toFixed(2);
+
+  const pill = document.getElementById('sPill');
+  if (tot >= GOAL)      { pill.className = 's-pill s-ok';   pill.textContent = '✅ 목표 달성!'; }
+  else if (tot >= WARN) { pill.className = 's-pill s-ok';   pill.textContent = '🟡 ' + (GOAL - tot) + '명 더 모집 중'; }
+  else                  { pill.className = 's-pill s-warn'; pill.textContent = '🔴 ' + (WARN - tot) + '명 더 필요'; }
+
+  document.getElementById('listCount').textContent = tot + '명';
+  const tip = document.getElementById('listTip');
+  tip.textContent = conf > 0
+    ? '✅ 입금완료 ' + conf + '명 · 미입금 ' + (tot - conf) + '명 · 납입합계 ' + amt.toLocaleString() + '원'
+    : '';
+
+  document.getElementById('adminBar').classList.toggle('on', isAdm);
+  document.getElementById('admHelp').style.display = isAdm ? 'block' : 'none';
+
+  const wrap = document.getElementById('listWrap');
+  if (tot === 0) {
+    wrap.innerHTML = '<div class="empty-state"><span>🙋</span>아직 신청자가 없습니다.<br>첫 번째로 신청해 보세요!</div>';
+    return;
+  }
+  const rows = list.map(([id, x], i) => {
+    const chk = x.ok
+      ? `<button class="dep-btn dep-ok" onclick="togDep('${id}')">✅ 완료</button>`
+      : `<button class="dep-btn dep-no" onclick="togDep('${id}')">☐ 미입금</button>`;
+    const del = isAdm
+      ? `<button class="del-btn" onclick="delP('${id}')" title="삭제">🗑</button>`
+      : '';
+    return `<tr>
+      <td style="text-align:center"><span class="p-badge">${i + 1}</span></td>
+      <td class="left" style="font-weight:900;font-size:13px;">${e(x.n)}</td>
+      <td class="left" style="font-size:12px;color:#444;">${e(x.p)}</td>
+      <td style="text-align:center">${chk}</td>
+      <td style="text-align:center">
+        <button class="edit-btn" onclick="editP('${id}')">✏️ 수정</button>
+        ${del}
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<div class="table-wrap"><table class="p-table">
+    <colgroup>
+      <col style="width:26px"><col style="width:20%">
+      <col style="width:30%"><col style="width:22%"><col style="width:22%">
+    </colgroup>
+    <thead><tr>
+      <th>#</th><th class="left">이름</th><th class="left">연락처</th>
+      <th>입금확인</th><th>수정</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>`;
+}
+
+// ── 계좌 복사 ──
+function copyAccount() {
+  const txt = '대구은행 504-10-493040-3 (예금주: 서부초등50회 동기회)';
+  const btn  = document.getElementById('copyBtn');
+  const done = () => {
+    btn.textContent = '✓ 복사됨'; btn.classList.add('done');
+    toast('📋 계좌번호 복사 완료!');
+    setTimeout(() => { btn.textContent = '📋 복사'; btn.classList.remove('done'); }, 2500);
+  };
+  if (navigator.clipboard) { navigator.clipboard.writeText(txt).then(done).catch(() => fbCopy(txt, done)); }
+  else { fbCopy(txt, done); }
+}
+function fbCopy(txt, cb) {
+  const t = document.createElement('textarea');
+  t.value = txt; document.body.appendChild(t); t.select();
+  document.execCommand('copy'); document.body.removeChild(t); cb();
+}
+
+// ── 관리자 모드 ──
+let tc = 0, tt = null;
+function aTap() {
+  tc++; clearTimeout(tt); tt = setTimeout(() => tc = 0, 2000);
+  if (tc >= 3) {
+    tc = 0;
+    const pin = prompt('총무 관리 비밀번호를 입력하세요:');
+    if (pin === PIN)      { isAdm = true;  draw(); toast('🔐 총무 관리 모드 활성화'); }
+    else if (pin !== null){ toast('❌ 비밀번호가 틀렸습니다'); }
+  }
+}
+function exitAdmin() { isAdm = false; draw(); toast('관리 모드 종료'); }
+
+// ── 로딩 UI ──
+function showLoading(msg) {
+  document.getElementById('loadingTxt').textContent = msg || '처리 중...';
+  document.getElementById('loadingOverlay').classList.add('on');
+}
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.remove('on');
+}
+
+// ── 유틸 ──
+function e(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+}
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+// ── 키보드 단축키 ──
+document.getElementById('iName').addEventListener('keydown', ev => { if (ev.key === 'Enter') document.getElementById('iPhone').focus(); });
+document.getElementById('iPhone').addEventListener('keydown', ev => { if (ev.key === 'Enter') addP(); });
+
+// ── 자동 새로고침 (5분마다) ──
+setInterval(loadData, 5 * 60 * 1000);
+</script>
+</body>
+</html>
